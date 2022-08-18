@@ -25,7 +25,7 @@ class pickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             self.picker.dataSource = self
 
             // Input data into the Array:
-            pickerData = ["Alliance for Children", "A Better Place for our Children", "Adoptions from the Heart", "Chosen Parents Adoption", "Open Arms Adoption Center"]
+            pickerData = ["Alliance for Children", "A Better Place for our Children", "Adoptions from the Heart", "Chosen Parents Adoption", "Cradle Of Hope", "Open Arms Adoption Center"]
         }
 
         func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

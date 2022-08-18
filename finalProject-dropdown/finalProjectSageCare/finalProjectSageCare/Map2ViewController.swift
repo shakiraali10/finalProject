@@ -8,12 +8,47 @@
 import UIKit
 import MapKit
 
-class Map2ViewController: UIViewController {
-
+class Map2ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return adoptionCenters.count
+    }
+    
+    @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var pickerMap: UIPickerView!
     @IBOutlet weak var mapView: MKMapView!
+    
+    
+    
+    let adoptionCenters =  ["Alliance for Children", "A Better Chance for our Children", "Adoptions from the Heart", "Chosen Parents Adoption", "Cradle Of Hope", "Open Arms Adoption Center"]
+    
+    let centerText = ["Alliance for Children \n https://www.allforchildrenadoption.org/ ", "A Better Chance for our Children \n https://abcfoc.org/", "Adoptions from the Heart \n https://afth.org/", "Chosen Parents Adoption \n https://chosenparentsadoptions.com/", "Cradle Of Hope \n https://cradlehope.org/", "Open Arms Adoption Center \n https://openarmsadoption.net/"]
+    
+    let centerWebsite = ["https://www.allforchildrenadoption.org", "https://abcfoc.org/", "https://afth.org/", "https://chosenparentsadoptions.com/", " https://cradlehope.org/", "https://openarmsadoption.net/"]
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return adoptionCenters[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        display.text = centerText[row]
+       // let websiteLink = centerWebsite[row]
+    }
+    
+    func findInt(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) -> Int? {
+        return row
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Set initial location in Honolulu
+       
+    
     
         let initialLocation = CLLocation(latitude: 39.9578/*820533054*/, longitude: -75.1685/*8230246532*/)
         mapView.centerToLocation(initialLocation)
@@ -50,14 +85,24 @@ class Map2ViewController: UIViewController {
          AC5.title = "Adoptions from the Heart"
          AC5.subtitle = "Domestic and international placement services"
         AC5.coordinate = CLLocationCoordinate2D(latitude: 39.93753744892809, longitude:-75.03271358975142)
-      //  place1.pinTintColor = .green
+    //    AC5.markerTintColor = .green
          mapView.addAnnotation(AC5)
-      
+        
+        let AC6 = MKPointAnnotation()
+         AC6.title = "Cradle Of Hope"
+         AC6.subtitle = "Provide adoption services to children in the US and overseas"
+        AC6.coordinate = CLLocationCoordinate2D(latitude: 39.782223550953766, longitude:-75.48253799998972)
+      //  place1.pinTintColor = .green
+         mapView.addAnnotation(AC6)
+    
+    }
+
+    @IBAction func websiteTapped(_ sender: UIButton) {
+        
+        if let url = URL(string: centerWebsite[2]){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)}
     }
     
-    
-    
-
     /*
     // MARK: - Navigation
 
