@@ -47,7 +47,11 @@ class Map2ViewController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
+        
+        if #available(iOS 13.0, *) {
+            self.overrideUserInterfaceStyle = .dark
+        }
     
     
         let initialLocation = CLLocation(latitude: 39.9578/*820533054*/, longitude: -75.1685/*8230246532*/)
